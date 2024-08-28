@@ -47,10 +47,10 @@ class ListaDoble:
                 if actual == self.cola:
                     self.cola = actual.previo
                 return
-            current = current.siguiente
+            actual = actual.siguiente
 #Remove all repeated elements
 
-    def remove_repeated_elements(self,data):
+    def remove_repeated_elements(self):
          actual = self.cabeza
          lista_sin_repetidos = set()
          while actual:
@@ -61,8 +61,44 @@ class ListaDoble:
              else:
                  lista_sin_repetidos.add(actual.data)
                  actual = actual.siguiente
-                 
 #Search for an element, returning it's index if found
 
 
 #Size of the list
+    def size(self):
+        contador = 0
+        actual = self.cabeza
+        while actual:
+            contador = contador + 1
+            actual = actual.siguiente
+        return contador
+        
+    def impresion(self):
+        actual = self.cabeza
+        while actual:
+            print(actual.data, end=" <--> ")
+            actual = actual.siguiente
+        print("None")
+
+prueba = ListaDoble()
+prueba.insertar_cola(20)
+prueba.insertar_cabeza(5)
+prueba.insertar_cola(20)
+
+
+print("Lista después de inserciones:")
+prueba.impresion()
+
+print("Tamaño de la lista:", prueba.size())
+
+#print("Índice de 20:",prueba.search(20))
+
+prueba.remove(5)
+print("Lista después de eliminar 5:")
+prueba.impresion()
+
+prueba.remove_repeated_elements()
+print("Lista después de eliminar duplicados:")
+prueba.impresion()
+
+print("Tamaño final de la lista:", prueba.size())
