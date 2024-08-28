@@ -20,13 +20,48 @@ class ListaDoble:
             nuevo_nodo.siguiente = pila(data)
             self.cabeza.previo = nuevo_nodo
             self.cabeza = nuevo_nodo
+        
+#Insert tail
+
+    def insertar_cola(self,data):
+        nuevo_nodo = pila(data)
+        #En caso de que la lista este vacio se hace uso del condicional 
+        if self.cola is None:
+            self.cabeza = self.cola = nuevo_nodo
+        else:
+            nuevo_nodo.previo = pila(data)
+            self.cabeza.siguiente = nuevo_nodo
+            self.cola = nuevo_nodo
 
 #Remove an element
-
-
+    def remove (self,data):
+        actual = self.cabeza
+        while actual:
+            if actual.data == data:
+                if actual.previo:
+                    actual.previo.siguiente = actual.siguiente
+                if actual.siguiente:
+                    actual.siguiente.previo = actual.previo
+                if actual == self.cabeza:
+                    self.cabeza = actual.siguiente
+                if actual == self.cola:
+                    self.cola = actual.previo
+                return
+            current = current.siguiente
 #Remove all repeated elements
 
-
+    def remove_repeated_elements(self,data):
+         actual = self.cabeza
+         lista_sin_repetidos = set()
+         while actual:
+             if actual.data in lista_sin_repetidos:
+                  siguiente_nodo = actual.siguiente    
+                  self.remove(actual.data)
+                  actual = actual.siguiente
+             else:
+                 lista_sin_repetidos.add(actual.data)
+                 actual = actual.siguiente
+                 
 #Search for an element, returning it's index if found
 
 
